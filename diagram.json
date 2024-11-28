@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "author": "Uri Shaked",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-pi-pico",
+      "id": "pico",
+      "top": 123.67,
+      "left": 135.97,
+      "rotate": 90,
+      "attrs": { "env": "arduino-community" }
+    },
+    { "type": "wokwi-lcd1602", "id": "lcd", "top": -17.85, "left": 22.03, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 114.8,
+      "left": 226.31,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 88.8,
+      "left": 337.8,
+      "attrs": { "volume": "0.1" }
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": 166.4,
+      "left": -143.2,
+      "attrs": {}
+    },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -57.3, "left": 397.8, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 255.6,
+      "left": 378.2,
+      "attrs": { "color": "limegreen" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": 255.6,
+      "left": 455,
+      "attrs": { "color": "yellow" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led3",
+      "top": 255.6,
+      "left": 531.8,
+      "attrs": { "color": "red" }
+    }
+  ],
+  "connections": [
+    [ "pico:GND.1", "lcd:VSS", "black", [ "v-51", "*", "h0", "v18" ] ],
+    [ "pico:GND.1", "lcd:K", "black", [ "v-51", "*", "h0", "v18" ] ],
+    [ "pico:GND.1", "lcd:RW", "black", [ "v-51", "*", "h0", "v18" ] ],
+    [ "pico:VSYS", "lcd:VDD", "red", [ "v16", "h-16" ] ],
+    [ "pico:VSYS", "r1:2", "red", [ "v16", "h0" ] ],
+    [ "r1:1", "lcd:A", "pink", [] ],
+    [ "pico:GP12", "lcd:RS", "blue", [ "v-16", "*", "h0", "v20" ] ],
+    [ "pico:GP11", "lcd:E", "purple", [ "v-20", "*", "h0", "v20" ] ],
+    [ "pico:GP10", "lcd:D4", "green", [ "v-24", "*", "h0", "v20" ] ],
+    [ "pico:GP9", "lcd:D5", "brown", [ "v-28", "*", "h0", "v20" ] ],
+    [ "pico:GP8", "lcd:D6", "gold", [ "v-32", "*", "h0", "v20" ] ],
+    [ "pico:GP7", "lcd:D7", "gray", [ "v-36", "*", "h0", "v20" ] ],
+    [ "led1:A", "pico:GP18", "green", [ "v96", "h-163.2" ] ],
+    [ "pico:GP28", "led2:A", "green", [ "v99.03", "h274.88", "v-19.2" ] ],
+    [ "led3:A", "pico:GP20", "green", [ "v86.4", "h-393.6", "v-19.2" ] ],
+    [ "dht1:VCC", "pico:3V3_EN", "red", [ "v0" ] ],
+    [ "dht1:GND", "pico:GND.1", "black", [ "v0" ] ],
+    [ "ldr1:VCC", "pico:3V3", "red", [ "h19.2", "v105.6", "h182.4" ] ],
+    [ "ldr1:GND", "pico:GND.5", "black", [ "h0" ] ],
+    [ "led1:C", "pico:GND.7", "green", [ "v9.6", "h-172.4" ] ],
+    [ "led2:C", "pico:GND.7", "green", [ "v28.8", "h-278", "v9.6" ] ],
+    [ "led3:C", "pico:GND.7", "green", [ "v38.4", "h-354.8" ] ],
+    [ "bz1:2", "pico:GP17", "green", [ "v0" ] ],
+    [ "bz1:1", "pico:GND.1", "green", [ "v0" ] ],
+    [ "dht1:SDA", "pico:GP16", "green", [ "v172.8", "h201.7", "v201.6", "h-547.2" ] ],
+    [ "ldr1:AO", "pico:GP4", "green", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
